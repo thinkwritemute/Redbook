@@ -1,66 +1,48 @@
-# Author: Kurtis Rainbolt-Greene
-# Build Time: 20:22:43 [2010.01.17] 
-# 
-# = Description =
-# A small journaling system that outputs in HTML.
-
 require 'time'
 require 'facets'
 
-def post_head(date,location)
-	return <<-HTML
-			<div class="post">
-				<div class="date">#{date}</div>
-				<div class="location">#{location}</div>
-	HTML
-end
-
-def post_body(body)
-	return <<-HTML
-				<div class="paragraph">
-					#{body}
-				</div>
-	HTML
-end
-
-def quote_body(body)
-	return <<-HTML
-				<div class="quote">
-					#{body}
-				</div>
-	HTML
-end
-
-system('clear')
-
-time_format = '%Y.%m.%d-(%H:%M:%S)'
-@date = Time.now.strftime(time_format)
-puts 'Time: ' + @date
-
-print 'Where are you? '
-@location = gets.chomp
-
 @post = []
-@post << post_head(@date,@location)
+@old_post = "\t\t\t<!--\n\t\t\tOld Post\n\t\t\t-->"
+def format_to_header(time,location)
+	return %{\n\t\t\t<div class="post">\n\t\t\t\t<div class="date">#{time}</div>\n\t\t\t\t<div class="location">#{location}</div>\n}
+end
+def format_to_paragraph(body)
+	return %{\n\t\t\t\t<div class="paragraph">\n\t\t\t\t\t#{body}\n\t\t\t\t</div>\n}
+end
+def format_to_quote(body)
+	return %{\n\t\t\t\t<div class="quote">\n\t\t\t\t\t#{body}\n\t\t\t\t</div>\n}
+end
 
+time_format = '(%Y.%m.%d) %H:%M:%S'
+time = Time.now.strftime(time_format)
+print 'The time is: ' + time + ', where are you? '
+location = gets.chomp
 
-loop do
-	print '>> '
+input = format_to_header time, location
+@post << input
+
+puts 'Entering post writer... (Use .e or .end to finish)'
+state = true
+until state == false
+	print 'Write:: '
 	input = gets.chomp
 	case input
-	when /\/q/i
-		break
-	when /q=(.+)/i
-		@post << quote_body($1)
-	when /.+/i
-		@post << post_body(input)
+		when /#(.+)/
+			puts 'picture found'
+			puts 'picture uploaded'
+			puts 'picture link added'
+		when />(.+)/
+			input = format_to_quote($1)
+			@post << input
+		when /\.e/ || /\.end/
+			state = false
+		when /(.+)/
+			input = format_to_paragraph($1)
+			@post << input
 	end
 end
 
-@new_post = "\t\t\t<!--\n\t\t\t\tOld Post\n\t\t\t-->" + @post.join
-
+@new_post = @old_post + @post.join + "\n\t\t\t</div>\n"
 File.rewrite('index.html', mode = "b") do |file|
-	file.gsub(/\t\t\t<!--\n\t\t\t\tOld Post\n\t\t\t-->/i,@new_post)
+	file.gsub(@old_post,@new_post)
 end
-
-puts 'Posting complete.'
