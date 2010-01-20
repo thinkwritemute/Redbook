@@ -1,0 +1,69 @@
+html,body,div,span {color:inherit;background-color:transparent;margin:0;padding:0}
+
+body {background-color:rgb(255,255,255);font-size:62.5%}
+
+/* 
+	name  == tag
+	.name == class
+	#name == id
+*/
+
+#head {
+	background-color: rgb(255,255,255);
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#main {
+	background-color: rgb(255,255,255);
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#tail {
+	background-color: rgb(255,255,255);
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.date {
+	color: rgb(150,150,150);
+	font-size: 4em;
+	text-align: center;
+}
+
+.location {
+	font-size: 2em;
+}
+
+.paragraph {
+	width: 640px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.quote {
+	color: rgb(200,200,200);
+	width: 640px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 2em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+/*
+Commonly Used Properites:
+	margin-top: ;
+	margin-left: ;
+	margin-right: ;
+	margin-bottom: ;
+	padding-top: ;
+	padding-left: ;
+	padding-right: ;
+	padding-bottom: ;
+*/

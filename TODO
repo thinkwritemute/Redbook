@@ -1,0 +1,9 @@
+1. Make the quote marker ">".
+2. Add image support with "% /img/dir/list"
+3. Mark links with "foo ban [bar http://www.bah.com alt-text]
+4. Note bold text with "foo *bar* ban"
+5. Add a "Are you done?" before ending the program.
+7. Remove the last paragraph with /r
+8. Make the Redbook directory.
+9. Make the sample HTML file.
+10. Make the sample CSS file.

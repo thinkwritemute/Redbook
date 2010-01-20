@@ -1,0 +1,6 @@
+Redbook is a very simple and compact command line interface blogging or journaling tool. Activated from the command line with "jrnl" the program creates a very plain websites and updates the page with every entry.
+
+Features:
+* Command line inteface
+* Can distinguish between a regular paragraph and a quote paragraph.
+* Writes in class based HTML in order to allow for clean viewing and editing.
